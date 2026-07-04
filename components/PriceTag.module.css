@@ -1,0 +1,147 @@
+.wrap {
+  position: sticky;
+  top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 26px;
+}
+
+.string {
+  width: 1.5px;
+  height: 30px;
+  background: var(--pencil);
+  transform: rotate(6deg);
+  margin-bottom: -6px;
+}
+
+.tag {
+  width: 100%;
+  max-width: 230px;
+  background: var(--kraft);
+  border: 1.5px solid var(--kraft-deep);
+  border-radius: 4px;
+  clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%, 0 12%);
+  padding: 34px 22px 20px;
+  transform: rotate(-3deg);
+  box-shadow: 3px 4px 0 rgba(34, 29, 22, 0.15);
+  animation: settle 0.45s ease;
+  text-align: center;
+}
+
+.hole {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  width: 13px;
+  height: 13px;
+  margin-left: -7px;
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: inset 0 0 0 2.5px var(--kraft-deep);
+}
+
+.tag {
+  position: relative;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(34, 29, 22, 0.6);
+  margin-bottom: 14px;
+}
+
+.history {
+  list-style: none;
+  margin-bottom: 8px;
+}
+
+.struckPrice {
+  font-family: var(--font-display);
+  font-size: 21px;
+  color: rgba(34, 29, 22, 0.45);
+  text-decoration: line-through;
+  text-decoration-thickness: 2.5px;
+  text-decoration-color: rgba(34, 29, 22, 0.55);
+  transform: rotate(-1deg);
+  line-height: 1.35;
+}
+
+.struckPrice:nth-child(even) {
+  transform: rotate(1.2deg);
+}
+
+.current {
+  font-family: var(--font-display);
+  font-size: 40px;
+  line-height: 1.1;
+  color: var(--sticker);
+  text-shadow: 1px 1px 0 rgba(34, 29, 22, 0.12);
+}
+
+.foot {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(34, 29, 22, 0.55);
+}
+
+@keyframes settle {
+  0% {
+    transform: rotate(-6.5deg);
+  }
+  55% {
+    transform: rotate(-1.2deg);
+  }
+  100% {
+    transform: rotate(-3deg);
+  }
+}
+
+@media (max-width: 700px) {
+  .wrap {
+    position: static;
+    padding-top: 0;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .string {
+    display: none;
+  }
+  .tag {
+    max-width: none;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 14px;
+    padding: 14px 18px;
+    clip-path: polygon(4% 0, 100% 0, 100% 100%, 0 100%, 0 40%);
+    transform: rotate(0deg);
+    animation: none;
+  }
+  .hole {
+    display: none;
+  }
+  .label {
+    display: none;
+  }
+  .history {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 0;
+  }
+  .struckPrice {
+    font-size: 17px;
+  }
+  .current {
+    font-size: 26px;
+  }
+  .foot {
+    display: none;
+  }
+}

@@ -1,0 +1,78 @@
+:root {
+  /* The Stall — butcher paper, marker ink, price stickers */
+  --paper: #f6f1e7;
+  --paper-deep: #efe7d8;
+  --ink: #221d16;
+  --pencil: #8a7f6e;
+  --sticker: #ff4d00;
+  --sticker-yellow: #f2e31d;
+  --kraft: #d9b98c;
+  --kraft-deep: #c6a271;
+  --receipt: #fdfcf8;
+
+  --font-display: var(--font-display), "Permanent Marker", cursive;
+  --font-body: var(--font-body), "Karla", sans-serif;
+  --font-mono: var(--font-mono), "Space Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  background-color: var(--paper);
+  /* faint paper grain — two barely-there fiber directions */
+  background-image: repeating-linear-gradient(
+      0deg,
+      rgba(34, 29, 22, 0.015) 0px,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(34, 29, 22, 0.01) 0px,
+      transparent 1px,
+      transparent 5px
+    );
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--sticker);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

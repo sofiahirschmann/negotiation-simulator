@@ -1,0 +1,83 @@
+.scroll {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 8px 4px 24px 0;
+  min-height: 200px;
+}
+
+.empty {
+  margin: auto;
+  text-align: center;
+  font-style: italic;
+  color: var(--pencil);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.vendor {
+  max-width: 85%;
+}
+
+.vendorName {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pencil);
+  margin-bottom: 4px;
+}
+
+.vendorText {
+  font-size: 16px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.buyer {
+  align-self: flex-end;
+  max-width: 78%;
+}
+
+.buyerText {
+  background: var(--paper-deep);
+  border: 1.5px solid rgba(34, 29, 22, 0.25);
+  border-radius: 10px 4px 10px 8px;
+  padding: 10px 14px;
+  font-size: 16px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.thinking {
+  font-style: italic;
+  color: var(--pencil);
+  font-size: 15px;
+}
+
+.dots::after {
+  content: "…";
+  display: inline-block;
+  animation: chew 1.2s steps(4, end) infinite;
+  width: 1.2em;
+  text-align: left;
+}
+
+@keyframes chew {
+  0% {
+    content: "";
+  }
+  25% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  75% {
+    content: "…";
+  }
+}

@@ -1,0 +1,234 @@
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  width: 100%;
+}
+
+.receipt {
+  width: min(420px, 100%);
+  filter: drop-shadow(0 6px 14px rgba(34, 29, 22, 0.18));
+}
+
+.paper {
+  background: var(--receipt);
+  padding: 28px 26px 32px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+/* torn edges — sawtooth strips */
+.tornTop,
+.tornBottom {
+  height: 12px;
+  background: var(--receipt);
+}
+
+.tornTop {
+  clip-path: polygon(
+    0 100%, 100% 100%, 100% 40%, 96% 90%, 92% 30%, 88% 80%, 84% 25%, 80% 85%,
+    76% 35%, 72% 90%, 68% 30%, 64% 75%, 60% 20%, 56% 85%, 52% 40%, 48% 90%,
+    44% 25%, 40% 80%, 36% 30%, 32% 85%, 28% 35%, 24% 75%, 20% 25%, 16% 90%,
+    12% 30%, 8% 80%, 4% 35%, 0 70%
+  );
+}
+
+.tornBottom {
+  clip-path: polygon(
+    0 0, 100% 0, 100% 60%, 96% 10%, 92% 70%, 88% 20%, 84% 75%, 80% 15%,
+    76% 65%, 72% 10%, 68% 70%, 64% 25%, 60% 80%, 56% 15%, 52% 60%, 48% 10%,
+    44% 75%, 40% 20%, 36% 70%, 32% 15%, 28% 65%, 24% 25%, 20% 75%, 16% 10%,
+    12% 70%, 8% 20%, 4% 65%, 0 30%
+  );
+}
+
+/* the print — each line reveals in order */
+.shopName,
+.line,
+.rule,
+.row,
+.note,
+.tactic,
+.totalRow,
+.summary,
+.footer {
+  animation: print 0.3s ease both;
+  animation-delay: calc(var(--i, 0) * 110ms);
+}
+
+@keyframes print {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.shopName {
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+}
+
+.line {
+  text-align: center;
+  color: rgba(34, 29, 22, 0.75);
+}
+
+.rule {
+  text-align: center;
+  color: rgba(34, 29, 22, 0.4);
+  letter-spacing: 2px;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 10px 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-weight: 700;
+}
+
+.bandName {
+  color: var(--sticker);
+}
+
+.note {
+  color: rgba(34, 29, 22, 0.65);
+  margin-top: 2px;
+}
+
+.tactic {
+  margin-bottom: 12px;
+}
+
+.feedback {
+  color: rgba(34, 29, 22, 0.7);
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.moveLabel {
+  font-weight: 700;
+}
+
+.grade_sharp {
+  color: var(--sticker);
+}
+
+.grade_decent {
+  color: var(--ink);
+}
+
+.grade_weak {
+  color: rgba(34, 29, 22, 0.55);
+}
+
+.grade_missed {
+  color: rgba(34, 29, 22, 0.4);
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-weight: 700;
+  font-size: 15px;
+  margin: 6px 0 10px;
+}
+
+.totalScore {
+  font-family: var(--font-display);
+  font-size: 34px;
+  color: var(--sticker);
+}
+
+.summary {
+  font-style: italic;
+  color: rgba(34, 29, 22, 0.75);
+  margin-bottom: 14px;
+}
+
+.footer {
+  text-align: center;
+  color: rgba(34, 29, 22, 0.55);
+  letter-spacing: 0.08em;
+  font-size: 11px;
+  line-height: 2;
+}
+
+.tallying {
+  text-align: center;
+  padding: 28px 0;
+  color: rgba(34, 29, 22, 0.65);
+  letter-spacing: 0.08em;
+}
+
+.dots::after {
+  content: "…";
+  display: inline-block;
+  width: 1.2em;
+  text-align: left;
+  animation: tally 1.2s steps(4, end) infinite;
+}
+
+@keyframes tally {
+  0% {
+    content: "";
+  }
+  25% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  75% {
+    content: "…";
+  }
+}
+
+.errorText {
+  text-align: center;
+  padding: 20px 0 12px;
+  color: var(--sticker);
+}
+
+.retry {
+  display: block;
+  margin: 0 auto 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  background: var(--sticker-yellow);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.again {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border: 2px solid var(--ink);
+  border-radius: 4px 6px 5px 4px;
+  background: var(--receipt);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.again:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink);
+}

@@ -1,0 +1,147 @@
+/* ---------- picker ---------- */
+
+.picker {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+}
+
+.masthead {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pencil);
+  margin-bottom: 16px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(56px, 10vw, 96px);
+  line-height: 1;
+  font-weight: 400;
+  transform: rotate(-1.5deg);
+}
+
+.subtitle {
+  max-width: 440px;
+  margin: 20px auto 0;
+  color: var(--pencil);
+  font-size: 17px;
+}
+
+.stalls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+@media (max-width: 700px) {
+  .stalls {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- game ---------- */
+
+.game {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.gameHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.backLink {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--pencil);
+}
+
+.backLink:hover {
+  color: var(--ink);
+}
+
+.stallSign {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  min-width: 0;
+}
+
+.stallName {
+  font-family: var(--font-display);
+  font-size: 26px;
+  transform: rotate(-1deg);
+}
+
+.stallItem {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--pencil);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gameBody {
+  flex: 1;
+  display: flex;
+  gap: 36px;
+  padding-top: 24px;
+  min-height: 0;
+}
+
+.chatColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.tagRail {
+  width: 250px;
+  flex-shrink: 0;
+}
+
+.chatError {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--sticker);
+  padding: 8px 0;
+}
+
+@media (max-width: 700px) {
+  .gameBody {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .tagRail {
+    width: 100%;
+    order: -1;
+  }
+}
+
+/* ---------- receipt stage ---------- */
+
+.receiptStage {
+  min-height: 100dvh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 16px 96px;
+}
