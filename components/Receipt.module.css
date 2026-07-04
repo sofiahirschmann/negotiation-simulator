@@ -20,7 +20,7 @@
   color: var(--ink);
 }
 
-/* torn edges — sawtooth strips */
+/* torn edges: sawtooth strips */
 .tornTop,
 .tornBottom {
   height: 12px;
@@ -45,7 +45,7 @@
   );
 }
 
-/* the print — each line reveals in order */
+/* the print: each line reveals in order */
 .shopName,
 .line,
 .rule,

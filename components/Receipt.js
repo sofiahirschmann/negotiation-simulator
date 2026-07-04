@@ -24,7 +24,7 @@ export default function Receipt({ vendor, status, data, error, onRetry, onReset 
             ★ THE HAGGLE ★
           </p>
           <p className={styles.line} style={next()}>
-            {vendor.role.toUpperCase()} — {vendor.name.toUpperCase()}
+            {vendor.role.toUpperCase()} · {vendor.name.toUpperCase()}
           </p>
           <p className={styles.line} style={next()}>
             {vendor.item.toUpperCase()}
@@ -105,7 +105,7 @@ export default function Receipt({ vendor, status, data, error, onRetry, onReset 
                 “{data.summary}”
               </p>
               <p className={styles.footer} style={next()}>
-                — the judge
+                signed, the judge
                 <br />
                 ★ THANK YOU · HAGGLE AGAIN ★
               </p>

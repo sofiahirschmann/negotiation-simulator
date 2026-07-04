@@ -136,7 +136,7 @@ export default function Home() {
 
   const shakeHands = () => {
     if (currentAsk == null) return;
-    send(`Deal — ${formatPrice(vendor, currentAsk)}. Shake on it.`);
+    send(`Deal. ${formatPrice(vendor, currentAsk)}. Shake on it.`);
   };
 
   const walkAway = () => {
@@ -157,7 +157,7 @@ export default function Home() {
           <h1 className={styles.title}>The Haggle</h1>
           <p className={styles.subtitle}>
             Talk them down. Every dollar is a fight. When it's over, a judge
-            grades your tactics — not your charm.
+            grades your tactics, not your charm.
           </p>
         </header>
         <div className={styles.stalls}>

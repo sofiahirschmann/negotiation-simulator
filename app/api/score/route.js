@@ -71,7 +71,7 @@ function outcomeBand(persona, vendor, outcome) {
     return {
       band: "No deal",
       bandNote: walked
-        ? "You walked. Sometimes that's the right call — the judge weighs whether it was."
+        ? "You walked. Sometimes that's the right call. The judge weighs whether it was."
         : "The vendor ended it. You pushed past the point of no return.",
       points: NO_DEAL_POINTS,
     };
@@ -93,7 +93,7 @@ function buildJudgePrompt(vendor, messages, outcome) {
   const transcript = messages
     .map((m) => `${m.role === "user" ? "BUYER" : "VENDOR"}: ${m.content}`)
     .join("\n\n");
-  return `Analyze this price negotiation and grade the BUYER's tactics. You are grading the buyer only — the vendor is a fixed AI character.
+  return `Analyze this price negotiation and grade the BUYER's tactics. You are grading the buyer only; the vendor is a fixed AI character.
 
 CONTEXT
 - Item: ${vendor.item} (${vendor.role.toLowerCase()}: ${vendor.name})
@@ -101,10 +101,10 @@ CONTEXT
 - How it ended: ${outcome.status}${outcome.finalPrice != null ? ` at ${outcome.finalPrice}` : ""}
 - Lines like ⟦ask:N|status:S⟧ are machine state markers showing the vendor's asking price after each reply. Use them to track price movement; the buyer never saw them.
 
-RUBRIC — grade each of these four tactics:
+RUBRIC. Grade each of these four tactics:
 ${rubricText()}
 
-For each tactic report: whether the buyer used it at all ("used"), a grade — "sharp" (textbook execution), "decent" (used it, imperfectly), "weak" (a half-hearted attempt), "missed" (never tried, or tried and it backfired) — and one line of specific, concrete feedback quoting or referencing what the buyer actually said. Feedback should read like a sharp coach: direct, specific, no filler. Also give a one-line overall summary, the buyer's single best move, and their single worst move (or biggest omission).
+For each tactic report: whether the buyer used it at all ("used"), a grade of "sharp" (textbook execution), "decent" (used it, imperfectly), "weak" (a half-hearted attempt), or "missed" (never tried, or tried and it backfired), and one line of specific, concrete feedback quoting or referencing what the buyer actually said. Feedback should read like a sharp coach: direct, specific, no filler. Never use em dashes in any text you write; use commas, periods, or colons instead. Also give a one-line overall summary, the buyer's single best move, and their single worst move (or biggest omission).
 
 TRANSCRIPT
 ${transcript}`;

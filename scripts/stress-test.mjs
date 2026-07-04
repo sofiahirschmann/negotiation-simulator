@@ -87,7 +87,7 @@ for (const [personaId, lines] of Object.entries(SCENARIOS)) {
       fail(`turn ${i + 1}: vendor DEALT at ${ask} against a pure lowball barrage`);
     }
     if (status === "walkaway") {
-      pass(`turn ${i + 1}: vendor walked away rather than fold — acceptable`);
+      pass(`turn ${i + 1}: vendor walked away rather than fold (acceptable)`);
       break;
     }
   }

@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 import styles from "./Chat.module.css";
 
-// The vendor's replies carry a machine marker (⟦ask:…⟧) at the end —
-// canonical transcript keeps it, the player never sees it.
+// The vendor's replies carry a machine marker (⟦ask:…⟧) at the end.
+// The canonical transcript keeps it; the player never sees it.
 function stripMarker(text) {
   const cut = text.indexOf("⟦");
   return (cut === -1 ? text : text.slice(0, cut)).trim();
@@ -25,7 +25,7 @@ export default function Chat({ vendor, messages, streamingText }) {
         <p className={styles.empty}>
           You're at the stall. The asking price is on the tag.
           <br />
-          Open your mouth — or better, open low.
+          Open your mouth. Better yet, open low.
         </p>
       )}
       {messages.map((m, i) =>
