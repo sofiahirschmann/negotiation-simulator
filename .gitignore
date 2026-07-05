@@ -21,3 +21,6 @@ npm-debug.log*
 
 # vercel
 .vercel
+
+# project instructions stay local
+CLAUDE.md
