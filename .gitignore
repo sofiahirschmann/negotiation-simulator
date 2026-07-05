@@ -15,7 +15,7 @@
 # debug
 npm-debug.log*
 
-# env files — the API key lives here and must never be committed
+# env files: the API key lives here and must never be committed
 .env*
 !.env.example
 
