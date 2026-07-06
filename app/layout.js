@@ -1,16 +1,17 @@
-import { Karla, Permanent_Marker, Space_Mono } from "next/font/google";
+import { Press_Start_2P, VT323 } from "next/font/google";
 import "./globals.css";
 
-const karla = Karla({ subsets: ["latin"], variable: "--font-body" });
-const marker = Permanent_Marker({
+// Two bitmap faces: Press Start 2P for the arcade HUD/logo (used tiny and
+// sparingly), VT323 for everything you actually read.
+const pressStart = Press_Start_2P({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-display",
 });
-const mono = Space_Mono({
-  weight: ["400", "700"],
+const vt323 = VT323({
+  weight: "400",
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-body",
 });
 
 export const metadata = {
@@ -20,10 +21,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${karla.variable} ${marker.variable} ${mono.variable}`}
-    >
+    <html lang="en" className={`${pressStart.variable} ${vt323.variable}`}>
       <body>{children}</body>
     </html>
   );

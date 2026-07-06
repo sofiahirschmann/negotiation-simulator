@@ -31,7 +31,7 @@ export default function OfferBar({
           type="text"
           value={text}
           maxLength={500}
-          placeholder={started ? "Your move…" : "Make an offer…"}
+          placeholder={started ? "Your move..." : "Make an offer..."}
           onChange={(e) => setText(e.target.value)}
           disabled={busy}
           autoFocus
@@ -49,7 +49,7 @@ export default function OfferBar({
         <div className={styles.actions}>
           {currentAsk != null && (
             <button className={styles.shake} onClick={onShake} disabled={busy}>
-              🤝 Shake hands at {formatPrice(vendor, currentAsk)}
+              Shake on {formatPrice(vendor, currentAsk)}
             </button>
           )}
           <button className={styles.walk} onClick={onWalk} disabled={busy}>

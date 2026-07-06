@@ -3,67 +3,79 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 8px 4px 24px 0;
-  min-height: 200px;
+  gap: 16px;
+  padding: 2px 6px 14px 2px;
+  min-height: 120px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--parchment-deep) transparent;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 10px;
+}
+.scroll::-webkit-scrollbar-thumb {
+  background: var(--parchment-deep);
+  border: 3px solid var(--parchment);
 }
 
 .empty {
   margin: auto;
   text-align: center;
-  font-style: italic;
-  color: var(--pencil);
-  font-size: 15px;
-  line-height: 1.7;
+  color: var(--ink-soft);
+  font-size: 21px;
+  line-height: 1.4;
+  max-width: 32ch;
 }
 
 .vendor {
-  max-width: 85%;
+  max-width: 88%;
 }
 
 .vendorName {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 9px;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--pencil);
-  margin-bottom: 4px;
+  color: var(--accent);
+  background: var(--night-deep);
+  padding: 5px 7px;
+  margin-bottom: 8px;
 }
 
 .vendorText {
-  font-size: 16px;
-  line-height: 1.55;
+  font-size: 23px;
+  line-height: 1.32;
+  color: var(--ink);
   white-space: pre-wrap;
 }
 
 .buyer {
   align-self: flex-end;
-  max-width: 78%;
+  max-width: 80%;
 }
 
 .buyerText {
-  background: var(--paper-deep);
-  border: 1.5px solid rgba(34, 29, 22, 0.25);
-  border-radius: 10px 4px 10px 8px;
-  padding: 10px 14px;
-  font-size: 16px;
-  line-height: 1.5;
+  background: var(--night);
+  color: var(--lamp);
+  border: 2px solid var(--ink);
+  padding: 9px 13px;
+  font-size: 21px;
+  line-height: 1.3;
   white-space: pre-wrap;
+  box-shadow: 3px 3px 0 rgba(36, 28, 18, 0.28);
 }
 
 .thinking {
-  font-style: italic;
-  color: var(--pencil);
-  font-size: 15px;
+  color: var(--ink-soft);
+  font-size: 21px;
 }
 
 .dots::after {
-  content: "…";
+  content: "...";
   display: inline-block;
   animation: chew 1.2s steps(4, end) infinite;
-  width: 1.2em;
+  width: 1.4em;
   text-align: left;
 }
 
@@ -78,6 +90,6 @@
     content: "..";
   }
   75% {
-    content: "…";
+    content: "...";
   }
 }

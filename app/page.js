@@ -4,7 +4,8 @@ import { useCallback, useRef, useState } from "react";
 import { STOREFRONT, formatPrice } from "@/lib/storefront";
 import PersonaCard from "@/components/PersonaCard";
 import Chat from "@/components/Chat";
-import PriceTag from "@/components/PriceTag";
+import Scene from "@/components/Scene";
+import { MarketSkyline, TagGlyph } from "@/components/VendorArt";
 import OfferBar from "@/components/OfferBar";
 import Receipt from "@/components/Receipt";
 import styles from "./page.module.css";
@@ -20,10 +21,12 @@ export default function Home() {
   const [scoreData, setScoreData] = useState(null);
   const [scoreError, setScoreError] = useState(null);
   const [chatError, setChatError] = useState(null);
+  const [logOpen, setLogOpen] = useState(false);
   const busyRef = useRef(false);
 
   const currentAsk = priceHistory[priceHistory.length - 1] ?? null;
   const gameOver = status !== "open";
+  const turns = messages.filter((m) => m.role === "user").length;
 
   const pickVendor = (v) => {
     setVendor(v);
@@ -44,6 +47,7 @@ export default function Home() {
     setScoreData(null);
     setScoreError(null);
     setChatError(null);
+    setLogOpen(false);
     busyRef.current = false;
   };
 
@@ -151,19 +155,27 @@ export default function Home() {
 
   if (!vendor) {
     return (
-      <main className={styles.picker}>
-        <header className={styles.masthead}>
-          <p className={styles.eyebrow}>Saturday market · two stalls open</p>
-          <h1 className={styles.title}>The Haggle</h1>
-          <p className={styles.subtitle}>
-            Talk them down. Every dollar is a fight. When it's over, a judge
-            grades your tactics, not your charm.
+      <main className={styles.select}>
+        <div className={styles.marquee}>
+          <header className={styles.marketHeader}>
+            <MarketSkyline />
+            <h1 className={styles.logo}>THE HAGGLE</h1>
+            <p className={styles.insert}>Saturday market // 2 stalls open</p>
+          </header>
+          <p className={styles.tagline}>
+            Talk them down. Every dollar is a fight.
+            <br />
+            When it's over, a judge grades your tactics, not your charm.
           </p>
-        </header>
-        <div className={styles.stalls}>
-          {STOREFRONT.map((v) => (
-            <PersonaCard key={v.id} vendor={v} onPick={() => pickVendor(v)} />
-          ))}
+          <div className={styles.divider} aria-hidden="true">
+            <TagGlyph />
+          </div>
+          <p className={styles.selectPrompt}>Select your mark</p>
+          <div className={styles.roster}>
+            {STOREFRONT.map((v) => (
+              <PersonaCard key={v.id} vendor={v} onPick={() => pickVendor(v)} />
+            ))}
+          </div>
         </div>
       </main>
     );
@@ -184,39 +196,76 @@ export default function Home() {
     );
   }
 
+  const firstName = vendor.name.split(" ")[0];
+
   return (
     <main className={styles.game}>
-      <header className={styles.gameHeader}>
-        <button className={styles.backLink} onClick={reset}>
-          ← the market
-        </button>
-        <div className={styles.stallSign}>
-          <span className={styles.stallName}>{vendor.name}</span>
-          <span className={styles.stallItem}>{vendor.item}</span>
-        </div>
-      </header>
+      <div
+        className={`${styles.cabinet} panel`}
+        style={{
+          "--accent": vendor.accent,
+          "--accent-soft": `${vendor.accent}22`,
+        }}
+      >
+        <header className={styles.hud}>
+          <button className={styles.leave} onClick={reset}>
+            &lt; Leave
+          </button>
+          <span className={styles.hudTitle}>THE HAGGLE</span>
+          <div className={styles.hudStats}>
+            <button
+              className={`chip ${styles.logButton} ${logOpen ? styles.logOpenBtn : ""}`}
+              onClick={() => setLogOpen((o) => !o)}
+            >
+              Log
+            </button>
+            <span className="chip">{firstName}</span>
+            <span className="chip">Turn {turns}</span>
+            <span className={`chip ${styles.chipAsk}`}>
+              {formatPrice(vendor, currentAsk)}
+            </span>
+          </div>
+        </header>
 
-      <div className={styles.gameBody}>
-        <section className={styles.chatColumn}>
-          <Chat
+        <div className={styles.screen}>
+          <div className="scanlines" aria-hidden="true" />
+
+          <Scene
             vendor={vendor}
             messages={messages}
             streamingText={streamingText}
+            priceHistory={priceHistory}
           />
-          {chatError && <p className={styles.chatError}>{chatError}</p>}
-          <OfferBar
-            vendor={vendor}
-            currentAsk={currentAsk}
-            busy={streamingText !== null}
-            started={messages.length > 0}
-            onSend={send}
-            onShake={shakeHands}
-            onWalk={walkAway}
-          />
-        </section>
-        <aside className={styles.tagRail}>
-          <PriceTag vendor={vendor} priceHistory={priceHistory} />
-        </aside>
+
+          <section className={styles.commandBar}>
+            {chatError && <p className={styles.chatError}>{chatError}</p>}
+            <OfferBar
+              vendor={vendor}
+              currentAsk={currentAsk}
+              busy={streamingText !== null}
+              started={messages.length > 0}
+              onSend={send}
+              onShake={shakeHands}
+              onWalk={walkAway}
+            />
+          </section>
+
+          {logOpen && (
+            <aside className={styles.logPanel}>
+              <div className={styles.logHead}>
+                <span>Haggle log</span>
+                <button className={styles.logClose} onClick={() => setLogOpen(false)}>
+                  Close
+                </button>
+              </div>
+              <Chat
+                vendor={vendor}
+                messages={messages}
+                streamingText={streamingText}
+              />
+            </aside>
+          )}
+        </div>
       </div>
     </main>
   );

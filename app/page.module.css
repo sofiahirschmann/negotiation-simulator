@@ -1,142 +1,317 @@
-/* ---------- picker ---------- */
+/* ============ title + character select ============ */
 
-.picker {
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 64px 24px 96px;
+.select {
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  padding: 26px 16px 64px;
 }
 
-.masthead {
-  text-align: center;
-  margin-bottom: 56px;
+/* the whole title screen sits inside one brass marquee frame */
+.marquee {
+  width: min(1000px, 100%);
+  align-self: flex-start;
+  background: #17112a;
+  border: 2px solid var(--brass-deep);
+  border-radius: 10px;
+  box-shadow: 0 0 0 3px var(--night-deep), 0 6px 0 rgba(0, 0, 0, 0.35),
+    0 0 60px rgba(201, 162, 74, 0.08);
+  padding-bottom: 44px;
+  overflow: hidden;
 }
 
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--pencil);
-  margin-bottom: 16px;
+/* skyline strip with the logo over it */
+.marketHeader {
+  position: relative;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  border-bottom: 3px dashed var(--stone);
+  background: linear-gradient(180deg, #1c1533 0%, #17112a 100%);
+  overflow: hidden;
 }
 
-.title {
+.insert {
+  position: relative;
   font-family: var(--font-display);
-  font-size: clamp(56px, 10vw, 96px);
-  line-height: 1;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brass);
+  border: 2px solid var(--stone);
+  background: rgba(16, 12, 27, 0.6);
+  padding: 8px 14px;
+}
+
+.logo {
+  position: relative;
+  font-family: var(--font-display);
   font-weight: 400;
-  transform: rotate(-1.5deg);
+  line-height: 1;
+  color: var(--brass-hi);
+  font-size: clamp(24px, 4.5vw, 38px);
+  letter-spacing: 0.04em;
+  text-shadow: 0 3px 0 var(--brass-deep), 0 6px 0 rgba(0, 0, 0, 0.5),
+    0 0 26px rgba(240, 168, 54, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-.subtitle {
-  max-width: 440px;
-  margin: 20px auto 0;
-  color: var(--pencil);
-  font-size: 17px;
+/* flanking marquee dashes */
+.logo::before,
+.logo::after {
+  content: "";
+  width: 30px;
+  height: 5px;
+  background: var(--brass);
+  box-shadow: 0 3px 0 var(--brass-deep);
 }
 
-.stalls {
+.tagline {
+  text-align: center;
+  margin: 30px auto 0;
+  padding: 0 24px;
+  color: var(--muted);
+  font-size: 21px;
+  line-height: 1.45;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 24px 56px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-top: 2px dotted var(--stone);
+}
+
+.selectPrompt {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--lamp);
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.selectPrompt::before {
+  content: "\25B8";
+  color: var(--accent);
+  margin-right: 14px;
+}
+
+.selectPrompt::after {
+  content: "\25C2";
+  color: var(--accent);
+  margin-left: 14px;
+}
+
+.roster {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 28px;
+  gap: 24px;
+  padding: 0 36px;
 }
 
-@media (max-width: 700px) {
-  .stalls {
+@media (max-width: 680px) {
+  .roster {
     grid-template-columns: 1fr;
+    padding: 0 16px;
+  }
+  .marketHeader {
+    height: 170px;
+  }
+  .insert {
+    font-size: 8px;
+    padding: 7px 10px;
+  }
+  .divider {
+    margin: 22px 28px;
   }
 }
 
-/* ---------- game ---------- */
+/* ============ the cabinet ============ */
 
 .game {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 24px;
   min-height: 100dvh;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.cabinet {
+  width: min(940px, 100%);
+  height: min(880px, 92dvh);
+  display: flex;
   flex-direction: column;
+  padding: 10px;
+  border-radius: 6px;
 }
 
-.gameHeader {
+/* --- HUD bar --- */
+
+.hud {
   display: flex;
-  align-items: baseline;
-  gap: 24px;
-  padding-bottom: 16px;
-  border-bottom: 2px solid var(--ink);
-}
-
-.backLink {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--pencil);
-}
-
-.backLink:hover {
-  color: var(--ink);
-}
-
-.stallSign {
-  display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 14px;
-  min-width: 0;
-}
-
-.stallName {
-  font-family: var(--font-display);
-  font-size: 26px;
-  transform: rotate(-1deg);
-}
-
-.stallItem {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--pencil);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.gameBody {
-  flex: 1;
-  display: flex;
-  gap: 36px;
-  padding-top: 24px;
-  min-height: 0;
-}
-
-.chatColumn {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.tagRail {
-  width: 250px;
+  padding: 4px 6px 12px;
   flex-shrink: 0;
 }
 
+.leave {
+  font-family: var(--font-display);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 7px 9px;
+  border: 2px solid var(--stone);
+  background: var(--night-deep);
+}
+
+.leave:hover {
+  color: var(--brass-hi);
+  border-color: var(--brass-deep);
+}
+
+.hudTitle {
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--brass-hi);
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 0 var(--brass-deep);
+}
+
+.hudStats {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+  min-width: 0;
+}
+
+.chipAsk {
+  color: var(--night-deep);
+  background: var(--accent);
+  border-color: var(--accent);
+  font-size: 10px;
+}
+
+/* --- the lit screen --- */
+
+.screen {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--night);
+  border: 2px solid var(--night-deep);
+  overflow: hidden;
+}
+
+/* --- command bar: your line + the verbs --- */
+
+.commandBar {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--parchment);
+  color: var(--ink);
+  padding: 12px 16px;
+  /* inner-shadow lip so the paper reads as inset into the cabinet */
+  box-shadow: inset 0 3px 0 rgba(0, 0, 0, 0.18);
+}
+
+/* --- log: the full transcript, adventure-game style --- */
+
+.logButton {
+  cursor: pointer;
+}
+
+.logButton:hover {
+  color: var(--brass-hi);
+  border-color: var(--brass-deep);
+}
+
+.logOpenBtn {
+  color: var(--night-deep);
+  background: var(--brass);
+  border-color: var(--brass-deep);
+}
+
+.logPanel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 30;
+  width: min(440px, 92%);
+  display: flex;
+  flex-direction: column;
+  background: var(--parchment);
+  color: var(--ink);
+  border-right: 3px solid var(--night-deep);
+  box-shadow: 6px 0 24px rgba(8, 5, 15, 0.5);
+  padding: 12px 16px 10px;
+  animation: slideIn 0.18s ease-out;
+}
+
+.logHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-bottom: 10px;
+  border-bottom: 2px dashed var(--parchment-deep);
+  margin-bottom: 8px;
+}
+
+.logClose {
+  font-family: var(--font-display);
+  font-size: 9px;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding: 6px 9px;
+  border: 2px solid var(--ink);
+  background: var(--parchment-deep);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-24px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 .chatError {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--sticker);
-  padding: 8px 0;
+  font-family: var(--font-display);
+  font-size: 9px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--walk);
+  padding: 6px 0;
 }
 
-@media (max-width: 700px) {
-  .gameBody {
-    flex-direction: column;
-    gap: 16px;
-  }
-  .tagRail {
-    width: 100%;
-    order: -1;
-  }
-}
-
-/* ---------- receipt stage ---------- */
+/* ============ receipt / scorecard stage ============ */
 
 .receiptStage {
   min-height: 100dvh;
@@ -144,4 +319,13 @@
   align-items: flex-start;
   justify-content: center;
   padding: 48px 16px 96px;
+}
+
+@media (max-width: 680px) {
+  .cabinet {
+    height: min(760px, 94dvh);
+  }
+  .hudTitle {
+    display: none;
+  }
 }
